@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohin Khan - Digital Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Card */
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFD54F;
+    border-radius: 16px;
+    padding: 25px;
+    width: 460px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    overflow: hidden;
+    cursor: grab;
+}
+
+/* Blue lines */
+.line {
+    position: absolute;
+    width: 10px;
+    height: 120%;
+    background: #1976D2;
+    opacity: 0.25;
+    top: -10%;
+    transform: rotate(12deg);
+}
+
+.line.left1 { left: 25px; }
+.line.left2 { left: 50px; }
+.line.right1 { right: 25px; }
+.line.right2 { right: 50px; }
+
+/* Profile image */
+.profile-pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    border: 3px solid #fff;
+    flex-shrink: 0;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info */
+.info {
+    flex: 1;
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+}
+
+.title {
+    margin: 4px 0 12px;
+    color: #333;
+    font-size: 14px;
+}
+
+.contact a {
+    display: block;
+    text-decoration: none;
+    color: #222;
+    font-size: 14px;
+    margin: 3px 0;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* Social buttons */
+.social {
+    margin-top: 12px;
+}
+
+.social a {
+    display: inline-block;
+    padding: 6px 14px;
+    margin-right: 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.2s;
+}
+
+/* Facebook style */
+.social a.facebook {
+    background: #1877F2;
+}
+
+.social a.facebook:hover {
+    background: #0d65d9;
+}
+
+/* Messenger style */
+.social a.messenger {
+    background: #0084FF;
+}
+
+.social a.messenger:hover {
+    background: #006edc;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .card {
+        flex-direction: column;
+        text-align: center;
+        width: 90%;
+    }
+
+    .profile-pic {
+        margin: 0 0 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <div class="line left1"></div>
+    <div class="line left2"></div>
+    <div class="line right1"></div>
+    <div class="line right2"></div>
+
+    <div class="profile-pic">
+        <img src="profile.png" alt="Profile Picture">
+    </div>
+
+    <div class="info">
+        <h1>Mohin Khan</h1>
+        <div class="title">Student</div>
+
+        <div class="contact">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohin20102010@gmail.com" target="_blank">
+                📧 mohin20102010@gmail.com
+            </a>
+            <a href="tel:+8801314370300">📞 +880 1314370300</a>
+        </div>
+
+        <div class="social">
+            <a href="https://www.facebook.com/mohin.khan.537961" target="_blank" class="facebook">
+                Facebook
+            </a>
+
+            <a href="https://m.me/mohin.khan.537961" target="_blank" class="messenger">
+                Messenger
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+const card = document.getElementById("card");
+
+let isDragging = false;
+let offsetX, offsetY;
+
+card.addEventListener("mousedown", (e) => {
+    isDragging = true;
+
+    offsetX = e.clientX - card.offsetLeft;
+    offsetY = e.clientY - card.offsetTop;
+
+    card.style.cursor = "grabbing";
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    card.style.left = (e.clientX - offsetX) + "px";
+    card.style.top = (e.clientY - offsetY) + "px";
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    card.style.cursor = "grab";
+});
+</script>
+
+</body>
+</html>
